@@ -4,24 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="/logo.png" type="image/png">
     <title>Border-radius Previewer</title>
 </head>
+
 <body>
-    <div class="box" id="previewBox"></div>
+    <!--Header Section-->
+    <header class="section__container header__container">
+        <div class="header__image__container">
+            <div class="header__content">
+                <h1>Border-radius Previewer</h1>
+                <p>Preview how CSS border-radius values affect an element</p>
+            </div>
+        </div>
+    </header>
 
-    <label for="topLeft">Top Left:</label>
-    <input type="range" id="topLeft" min="0" max="100" value="0">
+    <!--Box Section-->
+    <div class="section__container box__container">
+        <div class="box" id="previewBox"></div>
+    </div>
 
-    <label for="topLeft">Top Right:</label>
-    <input type="range" id="topRight" min="0" max="100" value="0">
+    <!--Label Section-->
+    <div class="section__container label__container">
+        <div class="one_label">
+            <label for="topLeft">Top Left:</label>
+            <input type="range" id="topLeft" min="0" max="100" value="0">
+            <span class="slider-value" id="topLeftValue">0</span>     
+        </div>
 
-    <label for="topLeft">Bottom Left:</label>
-    <input type="range" id="bottomLeft" min="0" max="100" value="0">
+        <div class="one_label">
+            <label for="topLeft">Top Right:</label>
+            <input type="range" id="topRight" min="0" max="100" value="0">
+            <span class="slider-value" id="topRightValue">0</span>         
+        </div>
 
-    <label for="topLeft">Bottom Right:</label>
-    <input type="range" id="bottomRight" min="0" max="100" value="0">
+        <div class="one_label">
+            <label for="topLeft">Bottom Left:</label>
+            <input type="range" id="bottomLeft" min="0" max="100" value="0">
+            <span class="slider-value" id="bottomLeftValue">0</span>    
+        </div>
 
-    <button onclick="copyToClipboard()">Copy CSS</button>
+        <div class="one_label">
+            <label for="topLeft">Bottom Right:</label>
+            <input type="range" id="bottomRight" min="0" max="100" value="0">
+            <span class="slider-value" id="bottomRightValue">0</span>
+        </div>       
+    </div>
+
+    <!--Colour Picker-->
+    <div class="section__container colour__container">
+        <div class="colour__picker">
+            <label for="boxColor">Box Color:</label>
+            <input type="color" id="boxColor" class="boxColor" value="#1E90FF" draggable="true">
+        </div>
+    </div>
+    
+    <!--Button Section-->
+    <div class="section__container button__container">
+        <button onclick="copyToClipboard()">Copy CSS</button>
+    </div>
 
     <script src="script.js"></script>
 </body>
