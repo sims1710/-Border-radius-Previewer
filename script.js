@@ -22,6 +22,8 @@ bottomRightInput.addEventListener('input', updatePreview);
 box.addEventListener('click', changeColor);
 boxColorInput.addEventListener('input', updateBoxColor);
 
+box.addEventListener('dragstart', function(event) { console.log(event); })
+
 function updatePreview() {
     // Get the input values
     const topLeft = topLeftInput.value + 'px';
