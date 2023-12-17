@@ -1,109 +1,116 @@
-// Get references to the input elements
-const topLeftInput = document.getElementById('topLeft');
-const topLeftValue = document.getElementById('topLeftValue');
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
-const topRightInput = document.getElementById('topRight');
-const topRightValue = document.getElementById('topRightValue');
-
-const bottomLeftInput = document.getElementById('bottomLeft');
-const bottomLeftValue = document.getElementById('bottomLeftValue');
-
-const bottomRightInput = document.getElementById('bottomRight');
-const bottomRightValue = document.getElementById('bottomRightValue');
-
-const box = document.getElementById('previewBox');
-const boxColorInput = document.getElementById('boxColor');
-
-// Add input event listeners to update preview on range input change
-topLeftInput.addEventListener('input', updatePreview);
-topRightInput.addEventListener('input', updatePreview);
-bottomLeftInput.addEventListener('input', updatePreview);
-bottomRightInput.addEventListener('input', updatePreview);
-box.addEventListener('click', changeColor);
-boxColorInput.addEventListener('input', updateBoxColor);
-
-function updatePreview() {
-    // Get the input values
-    const topLeft = topLeftInput.value + 'px';
-    const topRight = topRightInput.value + 'px';
-    const bottomLeft = bottomLeftInput.value + 'px';
-    const bottomRight = bottomRightInput.value + 'px';
-
-    // Update the border-radius property of the preview box
-    const previewBox = document.getElementById('previewBox');
-    previewBox.style.borderRadius = `${topLeft} ${topRight} ${bottomLeft} ${bottomRight}`;
-
-    // Update the display values
-    topLeftValue.textContent = topLeft;
-    topRightValue.textContent = topRight;
-    bottomLeftValue.textContent = bottomLeft;
-    bottomRightValue.textContent = bottomRight;
+/*Basic Reset*/
+*,
+*::before
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-function copyToClipboard() {
-    // Get the CSS code from the preview box
-    const cssCode = document.getElementById('previewBox').style.cssText;
-
-    // Copy the CSS code to the clipboard
-    navigator.clipboard.writeText(cssCode)
-        .then(() => alert('CSS code copied to clipboard!'))
-        .catch(err => console.error('Unable to copy to clipboard', err));
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
 }
 
-// Change the background color of the box
-function changeColor() {
-    const randomColor = getRandomColor();
-    box.style.backgroundColor = randomColor;
-    boxColorInput.value = randomColor;
+.section__container {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-// Generate a random hex color
-function getRandomColor() {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+.section__header {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
 }
 
-// Get the color value from the color picker and update the box color
-function updateBoxColor() {   
-    const boxColor = boxColorInput.value;
-    box.style.backgroundColor = boxColor;
+/* Header Styles */
+
+.header__image__container{
+    position: relative;
+    background-color: #f3f4f6;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+.header__content {
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    color: black;
 }
 
 
-
-// Add event listeners for drag and drop
-box.addEventListener('dragstart', handleDragStart);
-box.addEventListener('dragend', handleDragEnd);
-
-let initialX, initialY;
-
-function handleDragStart(e) {
-    e.dataTransfer.setData('text/plain', ''); // required for Firefox
-    initialX = e.clientX - box.getBoundingClientRect().left;
-    initialY = e.clientY - box.getBoundingClientRect().top;
+/* Box Styles */
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: #3498db;
+    margin: 5px;
+    margin-top: 18px;
+    border-radius: 0 0 0 0;
+    transition: box-shadow 0.2s ease; 
 }
 
-function handleDragEnd() {
-    // Return the box to its original position
-    box.style.transition = 'transform 0.3s ease';
-    box.style.transform = 'translate(0, 0)';
-    setTimeout(() => {
-        box.style.transition = ''; // reset transition after animation
-    }, 300);
+.box:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-// Add event listeners for drag and drop
-document.addEventListener('dragover', handleDragOver);
-document.addEventListener('drop', handleDrop);
-
-function handleDragOver(e) {
-    e.preventDefault();
+/* Label Styles */
+.label__container {
+    margin-top: 1rem;
+    margin-left: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(4, 0.3fr);
+    gap: 2rem;
+    justify-content: center;
 }
 
-function handleDrop(e) {
-    e.preventDefault();
-
-    const dropX = e.clientX - initialX;
-    const dropY = e.clientY - initialY;
-
-    box.style.transform = `translate(${dropX}px, ${dropY}px)`;
+.label__container label {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
 }
+
+.slider-value {
+    font-size: 0.9rem;
+}
+
+/* Colour Picker */
+.colour__picker .boxColor {
+    transition: box-shadow 0.3s ease;
+}
+  
+.colour__picker:hover .boxColor{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+/* Button Styles */
+.button__container {
+    width: 100%;
+}
+
+.button__container button {
+    background-color: #f3f4f6;
+    border: none;
+    color: black;
+    padding: 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    transition: box-shadow 0.2s ease; 
+}
+
+.button__container button:hover {
+    background-color: #e7e7e7;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
